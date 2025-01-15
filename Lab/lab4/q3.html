@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23BCE1216</title>
+</head>
+<body>
+    <center><h1>Product Review</h1></center>
+    <form oninput="total.value=parseInt(a.value)+parseInt(b.value)+parseInt(c.value)">
+        <label for="a">Product Quality: </label>
+        <input type="range" id="a" value="50" min="0" max="100" step="1">
+        <output for="a">50</output><br>
+
+        <label for="b">Customer Service: </label>
+        <input type="range" id="b" value="60" min="0" max="100" step="1">
+        <output for="b">60</output><br>
+
+        <label for="c">Delivery Speed: </label>
+        <input type="range" id="c" value="70" min="0" max="100" step="1">
+        <output for="c">70</output><br>
+
+        Total = <output name="total" id="total">180</output>
+    </form>
+</body>
+</html>
