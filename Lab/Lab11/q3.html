@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>23BCE1216</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  .error-text { color: #f00; font-size: 0.875rem; display: none; }
+  .border-alert { border-color: #f00; }
+</style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+<div class="bg-white p-6 rounded-lg shadow-md w-[800px] relative">
+  <h2 class="text-2xl font-bold mb-4 text-center">Test JavaScript Form Validation</h2>
+  <div id="timeDisplay" class="absolute top-4 right-4 border p-1 text-sm"></div>
+  <form id="userForm" class="grid grid-cols-2 gap-4" onsubmit="return checkForm()">
+    <label>Full Name* <input type="text" id="fullName" class="w-full p-1 mb-1 border rounded"></label>
+    <span id="fullNameError" class="error-text">Please enter your name!</span>
+
+    <label>Home Address <input type="text" id="homeAddress" class="w-full p-1 mb-1 border rounded"></label>
+    <label>Postal Code* <input type="text" id="postalCode" class="w-full p-1 mb-1 border rounded"></label>
+    <span id="postalCodeError" class="error-text">Please enter a valid 5-digit zip code!</span>
+
+    <label>Nation* <select id="nation" class="w-full p-1 mb-1 border rounded">
+      <option value="">Please select...</option>
+      <option>UK</option><option>AUSTRALIA</option><option>INDIA</option>
+    </select></label>
+    <span id="nationError" class="error-text">Please select a country!</span>
+
+    <label>Identity*
+      <input type="radio" name="identity" value="Male"> Male
+      <input type="radio" name="identity" value="Female"> Female
+    </label>
+    <span id="identityError" class="error-text">Please select your gender!</span>
+
+    <label>Mobile* <input type="text" id="mobileNumber" class="w-full p-1 mb-1 border rounded"></label>
+    <span id="mobileNumberError" class="error-text">Please enter a valid phone number!</span>
+
+    <label>Email Address* <input type="email" id="emailAddress" class="w-full p-1 mb-1 border rounded"></label>
+    <span id="emailAddressError" class="error-text">Please enter a valid email!</span>
+
+    <label>Passcode* <input type="password" id="passcode" class="w-full p-1 mb-1 border rounded"></label>
+    <span id="passcodeError" class="error-text">Password must be at least 6 characters!</span>
+
+    <label>Confirm Passcode* <input type="password" id="confirmPasscode" class="w-full p-1 mb-1 border rounded"></label>
+    <span id="confirmPasscodeError" class="error-text">Passwords do not match!</span>
+
+    <div class="col-span-2 flex justify-between">
+      <button type="submit" class="bg-orange-500 text-white px-4 py-2 rounded">SEND</button>
+      <button type="reset" class="bg-gray-300 text-black px-4 py-2 rounded">CLEAR</button>
+    </div>
+  </form>
+</div>
+<script>
+  const timeDisplay = document.getElementById('timeDisplay');
+  setInterval(() => {
+    const currentTime = new Date();
+    timeDisplay.textContent = `Time: ${currentTime.toLocaleTimeString()}`;
+  }, 1000);
+
+  function checkForm() {
+    let formValid = true;
+    const fullName = document.getElementById('fullName').value;
+    const postalCode = document.getElementById('postalCode').value;
+    const nation = document.getElementById('nation').value;
+    const mobileNumber = document.getElementById('mobileNumber').value;
+    const emailAddress = document.getElementById('emailAddress').value;
+    const passcode = document.getElementById('passcode').value;
+    const confirmPasscode = document.getElementById('confirmPasscode').value;
+
+    if (!fullName) { formValid = false; document.getElementById('fullNameError').style.display = 'block'; }
+    if (!/^[0-9]{5}$/.test(postalCode)) { formValid = false; document.getElementById('postalCodeError').style.display = 'block'; }
+    if (!nation) { formValid = false; document.getElementById('nationError').style.display = 'block'; }
+    if (!/^[0-9]{10}$/.test(mobileNumber)) { formValid = false; document.getElementById('mobileNumberError').style.display = 'block'; }
+    if (!emailAddress.includes('@')) { formValid = false; document.getElementById('emailAddressError').style.display = 'block'; }
+    if (passcode.length < 6) { formValid = false; document.getElementById('passcodeError').style.display = 'block'; }
+    if (passcode !== confirmPasscode) { formValid = false; document.getElementById('confirmPasscodeError').style.display = 'block'; }
+
+    return formValid;
+  }
+</script>
+</body>
+</html>

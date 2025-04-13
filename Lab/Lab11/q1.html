@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>23BCE1216</title>
+<style>
+    #toggleBtn { background-color: blue; }
+    #userInput { background-color: green; }
+</style>
+</head>
+<body>
+
+<button onclick="generateTableAndControls()">Generate Table & Controls</button>
+<div id="mainContainer"></div>
+<hr>
+
+<input type="text" id="entryField" placeholder="Enter text">
+<button ondblclick="appendItem()">Add Entry</button>
+<ul id="entryList"></ul>
+<hr>
+
+<input type="text" id="charCounter" onkeypress="trackKeyPress()" placeholder="Type to track keys">
+<p>Keystroke Count: <span id="pressCount">0</span></p>
+
+<script>
+    function generateTableAndControls() {
+        const container = document.getElementById("mainContainer");
+        container.innerHTML = "";
+
+        const tbl = document.createElement("table");
+        tbl.border = 1;
+        for (let rowIdx = 0; rowIdx < 3; rowIdx++) {
+            const row = tbl.insertRow();
+            for (let colIdx = 0; colIdx < 3; colIdx++) {
+                const cell = row.insertCell();
+                cell.textContent = `Row ${rowIdx + 1}, Col ${colIdx + 1}`;
+            }
+        }
+        container.appendChild(tbl);
+        container.appendChild(document.createElement("hr"));
+
+        const toggleButton = document.createElement("button");
+        toggleButton.id = "toggleBtn";
+        toggleButton.textContent = "Hover Over Me!";
+        toggleButton.style.backgroundColor = "blue";
+        toggleButton.onmouseover = () => toggleButton.style.backgroundColor = "green";
+        toggleButton.onmouseout = () => toggleButton.style.backgroundColor = "blue";
+        container.appendChild(toggleButton);
+        container.appendChild(document.createElement("hr"));
+
+        const textInput = document.createElement("input");
+        textInput.type = "text";
+        textInput.id = "userInput";
+        textInput.placeholder = "Enter some text...";
+        textInput.style.backgroundColor = "green";
+        textInput.onfocus = () => textInput.style.backgroundColor = "yellow";
+        textInput.onblur = () => textInput.style.backgroundColor = "green";
+        textInput.onchange = () => alert("Text has been modified!, \nHello ");
+        container.appendChild(textInput);
+        container.appendChild(document.createElement("hr"));
+    }
+
+    function appendItem() {
+        const userInput = document.getElementById("entryField").value;
+        if (userInput.trim()) {
+            const newItem = document.createElement("li");
+            newItem.textContent = userInput;
+            document.getElementById("entryList").appendChild(newItem);
+            document.getElementById("entryField").value = "";
+        } else {
+            alert("Please enter valid text.");
+        }
+    }
+
+    let keyPresses = 0;
+    function trackKeyPress() {
+        keyPresses++;
+        document.getElementById("pressCount").textContent = keyPresses;
+    }
+</script>
+
+</body>
+</html>

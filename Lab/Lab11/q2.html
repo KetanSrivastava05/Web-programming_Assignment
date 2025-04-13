@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>23BCE1216</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        padding: 20px;
+        text-align: center;
+    }
+    button {
+        background-color: #dc6a00;
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        margin: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    button:hover {
+        background-color: #e77103;
+    }
+    #wrapper {
+        background-color: #fff;
+        padding: 20px;
+        margin-top: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    #timerDisplay, #calculatedAge, #textCounter {
+        font-size: 18px;
+        margin: 10px 0;
+    }
+    input, textarea {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        width: 80%;
+        max-width: 400px;
+    }
+    textarea {
+        height: 100px;
+        resize: vertical;
+    }
+    hr {
+        border: 0;
+        height: 1px;
+        background: #ddd;
+        margin: 20px 0;
+    }
+</style>
+</head>
+<body>
+
+<button onclick="generateElements()">Generate Elements</button>
+<div id="wrapper"></div>
+
+<script>
+function generateElements() {
+    const mainContainer = document.getElementById("wrapper");
+    mainContainer.innerHTML = "";
+
+    const timerSection = document.createElement("div");
+    
+    const playButton = document.createElement("button");
+    playButton.textContent = "Start";
+    playButton.onclick = initiateTimer;
+
+    const pauseButton = document.createElement("button");
+    pauseButton.textContent = "Stop";
+    pauseButton.onclick = haltTimer;
+
+    const resetButton = document.createElement("button");
+    resetButton.textContent = "Reset";
+    resetButton.onclick = restartTimer;
+
+    const displayTimer = document.createElement("p");
+    displayTimer.id = "timerDisplay";
+    displayTimer.textContent = "00:00";
+
+    timerSection.appendChild(playButton);
+    timerSection.appendChild(pauseButton);
+    timerSection.appendChild(resetButton);
+    timerSection.appendChild(displayTimer);
+
+    mainContainer.appendChild(timerSection);
+    mainContainer.appendChild(document.createElement("hr"));
+
+    const birthInput = document.createElement("input");
+    birthInput.type = "date";
+    birthInput.id = "dobField";
+    birthInput.placeholder = "Enter Date of Birth";
+    birthInput.onmouseover = computeAge;
+
+    const ageOutput = document.createElement("p");
+    ageOutput.id = "calculatedAge";
+    
+    mainContainer.appendChild(birthInput);
+    mainContainer.appendChild(ageOutput);
+    mainContainer.appendChild(document.createElement("hr"));
+
+    const inputTextArea = document.createElement("textarea");
+    inputTextArea.id = "textAreaField";
+    inputTextArea.placeholder = "Type here...";
+    inputTextArea.oninput = countCharacters;
+
+    const charDisplay = document.createElement("p");
+    charDisplay.innerHTML = 'Characters: <span id="textCounter">0</span>';
+    
+    mainContainer.appendChild(inputTextArea);
+    mainContainer.appendChild(charDisplay);
+}
+
+let timer, seconds = 0;
+function initiateTimer() {
+    if (!timer) {
+        timer = setInterval(() => {
+            seconds++;
+            document.getElementById("timerDisplay").textContent = 
+                new Date(seconds * 1000).toISOString().substr(14, 5);
+        }, 1000);
+    }
+}
+function haltTimer() {
+    clearInterval(timer);
+    timer = null;
+}
+function restartTimer() {
+    seconds = 0;
+    document.getElementById("timerDisplay").textContent = "00:00";
+    haltTimer();
+}
+
+function computeAge() {
+    const birthDate = new Date(document.getElementById("dobField").value);
+    if (!isNaN(birthDate)) {
+        const currentAge = new Date().getFullYear() - birthDate.getFullYear();
+        document.getElementById("calculatedAge").textContent = `Age: ${currentAge}`;
+    }
+}
+
+function countCharacters() {
+    const textLength = document.getElementById("textAreaField").value.length;
+    document.getElementById("textCounter").textContent = textLength;
+}
+</script>
+
+</body>
+</html>
