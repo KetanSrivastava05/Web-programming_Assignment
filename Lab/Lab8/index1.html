@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23BCE1216</title>
+    <script>
+        var t = "";
+
+        while (t !== "end") {
+            let a = parseFloat(prompt("Enter first number:"));
+            let b = parseFloat(prompt("Enter second number:"));
+            t = prompt("Enter operation (+, -, *, /, %) or type 'end' to exit:");
+
+            if (t === "+") {
+                alert("Result: " + (a + b));
+            } else if (t === "-") {
+                alert("Result: " + (a - b));
+            } else if (t === "*") {
+                alert("Result: " + (a * b));
+            } else if (t === "/") {
+                if (b === 0) {
+                    alert("Error: Division by zero is not allowed.");
+                } else {
+                    alert("Result: " + (a / b));
+                }
+            } else if (t === "%") {
+                alert("Result: " + (a % b));
+            } else if (t !== "end") {
+                alert("Invalid operation! Please enter a valid operator.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Basic Calculator</h1>
+    <h1>23BCE1216</h1>
+
+    
+</body>
+</html>

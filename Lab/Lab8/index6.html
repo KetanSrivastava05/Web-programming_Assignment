@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23BCE1216</title>
+
+    <script>
+        function totl() {
+            var val1 = document.getElementById("Adult").value;
+            var val2 = document.getElementById("Child").value;
+
+            var adultTickets, childTickets;
+
+            if (isNaN(val1) || val1 === "") {
+                adultTickets = 0;
+            } else {
+                adultTickets = parseInt(val1);
+            }
+
+            if (isNaN(val2) || val2 === "") {
+                childTickets = 0;
+            } else {
+                childTickets = parseInt(val2);
+            }
+
+            var total = adultTickets * 10 + childTickets * 5;
+            document.getElementById("ans").value = total;
+        }
+    </script>
+</head>
+<body>
+    <center><h1>Ticket Booth</h1></center>
+    <form>
+        Adult (Rs. 10 each)<br/>
+        <input type="text" name="a" id="Adult"><br/><br/>
+        Child (Rs. 5 each)<br/>
+        <input type="text" name="b" id="Child"><br/><br/>
+        <input type="button" value="Total" onclick="totl()">
+        <input type="text" name="ttol" id="ans" readonly="readonly"><br/><br/>
+    </form>
+</body>
+</html>
