@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23BCE1216</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            width: 300px;
+            margin: auto;
+            padding: 20px;
+            border: 2px solid black;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, select, button {
+            margin: 5px;
+            padding: 5px;
+            width: 90%;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>BMI Calculator</h2>
+        <h2>23BCE1216</h2>
+
+        <label>Enter Your Weight: (in pounds)</label>
+        <input type="number" id="weight" placeholder="Weight in lbs" required><br>
+
+        <label>Enter Your Height:</label><br>
+        <input type="number" id="heightFeet" placeholder="Feet" required>
+        <input type="number" id="heightInches" placeholder="Inches" required><br>
+
+        <label>Select Gender:</label>
+        <select id="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select><br>
+
+        <button onclick="calculateBMI()">Calculate</button>
+
+        <h3>Your BMI: <span id="bmiResult">-</span></h3>
+    </div>
+
+    <script>
+        function calculateBMI() {
+            let weight = parseFloat(document.getElementById("weight").value);
+            let feet = parseFloat(document.getElementById("heightFeet").value);
+            let inches = parseFloat(document.getElementById("heightInches").value);
+            let gender = document.getElementById("gender").value;
+
+            if (isNaN(weight) || isNaN(feet) || isNaN(inches) || weight <= 0 || feet < 0 || inches < 0 || (feet === 0 && inches === 0)) {
+                alert("Please enter valid height and weight.");
+                return;
+            }
+
+            let heightInInches = (feet * 12) + inches;
+            let bmi = (703 * weight) / (heightInInches ** 2);
+            bmi = bmi.toFixed(2);
+
+            let category = "";
+            if (gender === "male") {
+                if (bmi < 17.50) category = "Anorexia";
+                else if (bmi >= 17.50 && bmi <= 20.70) category = "Underweight";
+                else if (bmi >= 20.71 && bmi <= 26.40) category = "Ideal Range";
+                else if (bmi >= 26.41 && bmi <= 27.30) category = "Marginally Overweight";
+                else if (bmi >= 27.31 && bmi <= 31.10) category = "Overweight";
+                else category = "Very Overweight or Obese";
+            } else {
+                if (bmi < 17.50) category = "Anorexia";
+                else if (bmi >= 17.51 && bmi <= 19.10) category = "Underweight";
+                else if (bmi >= 19.11 && bmi <= 25.80) category = "Ideal Range";
+                else if (bmi >= 25.81 && bmi <= 27.30) category = "Marginally Overweight";
+                else if (bmi >= 27.31 && bmi <= 32.30) category = "Overweight";
+                else category = "Very Overweight or Obese";
+            }
+
+            document.getElementById("bmiResult").innerText = bmi;
+            alert("Your BMI is " + bmi + ". Status: " + category);
+        }
+    </script>
+
+</body>
+</html>

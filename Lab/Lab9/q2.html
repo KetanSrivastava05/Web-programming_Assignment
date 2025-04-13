@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23BCE1216</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 50%;
+        }
+        th, td {
+            border: 2px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .boarding-pass {
+            margin-top: 20px;
+            padding: 15px;
+            border: 2px solid black;
+            display: inline-block;
+            text-align: left;
+            background-color: #f9f9f9;
+        }
+        .full {
+            color: red;
+            font-weight: bold;
+        }
+        .seat-class {
+            font-weight: bold;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Airline Reservation System</h1>
+    <h1>23BCE1216</h1>
+    
+    <label>Enter Passenger Name:</label>
+    <input type="text" id="passengerName"><br><br>
+
+    <label>Select Class:</label>
+    <button onclick="assignSeat(1)">First-Class (Seats 1-5)</button>
+    <button onclick="assignSeat(2)">Economy (Seats 6-10)</button>
+
+    <h2>Seating Chart</h2>
+    <table>
+        <tr>
+            <th>Seat Number</th>
+            <th>Class</th>
+            <th>Status</th>
+        </tr>
+        <tbody id="seatChart"></tbody>
+    </table>
+
+    <div id="boardingPass" class="boarding-pass" style="display:none;">
+        <h3>Boarding Pass</h3>
+        <p>Passenger Name: <span id="bpName" class="seat-class"></span></p>
+        <p>Seat Number: <span id="bpSeat" class="seat-class"></span></p>
+        <p>Class: <span id="bpClass" class="seat-class"></span></p>
+    </div>
+
+    <script>
+        var seats = new Array(10).fill(0);
+
+        function updateSeatingChart() {
+            var tableBody = document.getElementById("seatChart");
+            tableBody.innerHTML = "";
+
+            for (var i = 0; i < seats.length; i++) {
+                var seatClass;
+                if (i < 5) {
+                    seatClass = "First-Class";
+                } else {
+                    seatClass = "Economy";
+                }
+
+                var status;
+                if (seats[i] === 0) {
+                    status = "Available";
+                } else {
+                    status = "<span class='full'>Booked</span>";
+                }
+
+                tableBody.innerHTML += "<tr><td>" + (i + 1) + "</td><td>" + seatClass + "</td><td>" + status + "</td></tr>";
+            }
+        }
+
+        function assignSeat(classType) {
+            var passengerName = document.getElementById("passengerName").value.trim();
+            if (passengerName === "") {
+                alert("Please enter the passenger's name.");
+                return;
+            }
+
+            if (seats.every(seat => seat === 1)) {
+                alert("Sorry, the flight is fully booked. The next flight leaves in 3 hours.");
+                return;
+            }
+
+            var start, end;
+            if (classType === 1) {
+                start = 0;
+                end = 5;
+            } else {
+                start = 5;
+                end = 10;
+            }
+
+            var seatAssigned = -1;
+            for (var i = start; i < end; i++) {
+                if (seats[i] === 0) {
+                    seats[i] = 1;
+                    seatAssigned = i + 1;
+                    break;
+                }
+            }
+
+            if (seatAssigned === -1) {
+                var alternateClass;
+                var altStart, altEnd;
+
+                if (classType === 1) {
+                    alternateClass = "Economy";
+                    altStart = 5;
+                    altEnd = 10;
+                } else {
+                    alternateClass = "First-Class";
+                    altStart = 0;
+                    altEnd = 5;
+                }
+
+                var alternativeSeat = -1;
+                for (var i = altStart; i < altEnd; i++) {
+                    if (seats[i] === 0) {
+                        alternativeSeat = i + 1;
+                        break;
+                    }
+                }
+
+                if (alternativeSeat !== -1) {
+                    var acceptOtherClass = confirm("The selected class is full. Would you like to book a seat in " + alternateClass + " class?");
+                    
+                    if (acceptOtherClass) {
+                        seats[alternativeSeat - 1] = 1;
+                        seatAssigned = alternativeSeat;
+                    } else {
+                        alert("Next flight leaves in 3 hours.");
+                        return;
+                    }
+                } else {
+                    alert("Sorry, both First-Class and Economy sections are full. The next flight leaves in 3 hours.");
+                    return;
+                }
+            }
+
+            if (seatAssigned !== -1) {
+                document.getElementById("bpName").innerText = passengerName;
+                document.getElementById("bpSeat").innerText = seatAssigned;
+
+                if (seatAssigned <= 5) {
+                    document.getElementById("bpClass").innerText = "First-Class";
+                } else {
+                    document.getElementById("bpClass").innerText = "Economy";
+                }
+
+                document.getElementById("boardingPass").style.display = "block";
+                updateSeatingChart();
+            }
+        }
+
+        updateSeatingChart();
+    </script>
+
+</body>
+</html>

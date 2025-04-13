@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23BCE1216</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 2px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .summary {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>New York City Temperature Analysis</h1>
+    <h1>23BCE1216</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Day</th>
+                <th>Temperature (°F)</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody id="tempTable"></tbody>
+    </table>
+
+    <div class="summary">
+        <p>Hot Days (≥ 85°F): <span id="hotCount"></span></p>
+        <p>Pleasant Days (60-84°F): <span id="pleasantCount"></span></p>
+        <p>Cold Days (< 60°F): <span id="coldCount"></span></p>
+    </div>
+
+    <script>
+        var temperatures = [55,62,68,74,59,45,41,58,60,67,65,78,82,88,91,92,90,93,87,80,78,79,72,68,61,59,55,65];
+        var hotDays = 0, pleasantDays = 0, coldDays = 0;
+        var tableBody = document.getElementById("tempTable");
+
+        for (var i = 0; i < temperatures.length; i++) {
+            var temp = temperatures[i];
+            var category = "";
+
+            if (temp >= 85) {
+                category = "Hot";
+                hotDays++;
+            } else if (temp >= 60 && temp < 85) {
+                category = "Pleasant";
+                pleasantDays++;
+            } else {
+                category = "Cold";
+                coldDays++;
+            }
+
+            var row = "<tr><td>Day " + (i + 1) + "</td><td>" + temp + "°F</td><td>" + category + "</td></tr>";
+            tableBody.innerHTML += row;
+        }
+
+        document.getElementById("hotCount").innerText = hotDays;
+        document.getElementById("pleasantCount").innerText = pleasantDays;
+        document.getElementById("coldCount").innerText = coldDays;
+    </script>
+
+</body>
+</html>
