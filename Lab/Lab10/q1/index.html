@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23BCE1216</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Patient Data</h2>
+        
+        <table id="patientTable">
+            <thead>
+                <tr>
+                    <th>P-Id</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+
+        <button onclick="sortByAge()">Sort by Age (Descending)</button>
+
+        <h3>Check if P-Id Exists</h3>
+        <input type="number" id="pidInput" placeholder="Enter P-Id">
+        <button onclick="checkPId()">Check</button>
+        <p id="pidResult"></p>
+
+        <h3>Filter by Age Range</h3>
+        <input type="number" id="minAge" placeholder="Min Age">
+        <input type="number" id="maxAge" placeholder="Max Age">
+        <button onclick="filterByAge()">Filter</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
