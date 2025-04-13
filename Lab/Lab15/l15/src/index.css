@@ -1,0 +1,276 @@
+/* Reset some default browser styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Apply a light, modern font and background */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+}
+
+/* Theme-specific styles */
+.light {
+  background-color: #f7f9fc;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.dark {
+  background-color: #222;
+  color: #f1f1f1;
+  transition: all 0.3s ease;
+}
+
+/* Main container styling */
+div {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* Header styling */
+h1 {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #3f51b5;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.dark h1 {
+  color: #7986cb;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+/* Section headers */
+h2 {
+  margin-top: 40px;
+  color: #3f51b5;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 12px;
+  font-size: 1.6rem;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.dark h2 {
+  color: #7986cb;
+  border-bottom: 2px solid #444;
+}
+
+/* Component containers */
+.component-box {
+  background-color: white;
+  border-radius: 12px;
+  padding: 24px;
+  margin-top: 24px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.component-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.dark .component-box {
+  background-color: #333;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+}
+
+/* Button styling */
+button {
+  background-color: #3f51b5;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin: 8px 8px 8px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+button:hover {
+  background-color: #303f9f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.dark button {
+  background-color: #5c6bc0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.dark button:hover {
+  background-color: #7986cb;
+}
+
+/* External button styling */
+.external-btn {
+  background-color: #ff6d00;
+  color: white;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.external-btn:hover {
+  background-color: #ff8f00;
+}
+
+/* Input fields */
+input, select, textarea {
+  padding: 12px 16px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+  font-size: 16px;
+  width: 100%;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #3f51b5;
+  box-shadow: 0 0 0 3px rgba(63, 81, 181, 0.2);
+}
+
+.dark input, .dark select, .dark textarea {
+  background-color: #333;
+  border-color: #444;
+  color: #fff;
+}
+
+.dark input:focus, .dark select:focus, .dark textarea:focus {
+  border-color: #7986cb;
+  box-shadow: 0 0 0 3px rgba(121, 134, 203, 0.3);
+}
+
+/* Form styling */
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Form labels */
+label {
+  display: block;
+  font-weight: 600;
+  margin-top: 16px;
+  margin-bottom: 6px;
+  color: #444;
+}
+
+.dark label {
+  color: #ddd;
+}
+
+/* Counter displays */
+p {
+  margin: 16px 0;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+/* Dynamic form preview */
+.preview-box {
+  background-color: #f0f4f8;
+  padding: 16px;
+  margin-top: 20px;
+  border-radius: 8px;
+  border-left: 4px solid #3f51b5;
+}
+
+.dark .preview-box {
+  background-color: #333;
+  border-left: 4px solid #7986cb;
+}
+
+.preview-title {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #3f51b5;
+}
+
+.dark .preview-title {
+  color: #7986cb;
+}
+
+/* Footer */
+footer {
+  margin-top: 60px;
+  padding: 20px 0;
+  text-align: center;
+  color: #777;
+  border-top: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.dark footer {
+  color: #aaa;
+  border-top: 1px solid #444;
+}
+
+/* Theme toggle indicator */
+.theme-indicator {
+  display: inline-block;
+  padding: 8px 12px;
+  background-color: #eee;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.dark .theme-indicator {
+  background-color: #444;
+}
+
+/* Joke display styling */
+.joke-text {
+  font-style: italic;
+  padding: 16px;
+  background-color: #f0f8ff;
+  border-radius: 8px;
+  margin: 16px 0;
+  font-size: 18px;
+}
+
+.dark .joke-text {
+  background-color: #334;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  div {
+    padding: 16px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.4rem;
+  }
+  
+  button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
+
